@@ -152,7 +152,7 @@
              <div class="project-box">
                 <i class="uil uil-users-alt"></i>
                 <h3>Sorting Visualizer</h3>
-                <label>Used for analyzing how sorting is done</label>
+                <p>Used for analyzing how sorting is done</p>
              </div>
              <div class="project-box">
                 <i class="uil uil-award"></i>
@@ -162,7 +162,32 @@
             </div>
          </section>
          <!-- contact box -->
-          <section class="section" id="contact">
+          <div id="contact">
+            <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa fa-phone"></i>8873121328</p>
+                    <p><i class="fa fa-paper-plane"></i>ankitkrmishra14jan@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/ankit-kumar-mishra-707083222/"><button class="btn"> <i class="uil uil-linkedin"></i></button></a>
+                        <a href="https://github.com/Ankit-Kumar-mishra123"><button class="btn"> <i class="uil uil-github-alt"></i></button></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg">
+                    </span>
+                </div>
+            </div>
+          </div>
+        </div>
+          <!-- <section class="section" id="contact">
             <div class="top-header">
                 <h1>Lets's work together</h1>
                 <span>Do you have  project  in your mind ,contact me here</span>
@@ -191,9 +216,8 @@
                  </div>
             </div>
         </div>
-          </section>
+          </section> -->
        </main>
-       <!-- Footer -->
         <footer>
             <div class="middle-footer">
                 <ul class="footer-menu">
@@ -210,7 +234,7 @@
                         <a href="#contact">contact</a>
                     </li>
                 </ul>
-            </div>
+            </div> 
             <div class="footer-social-icons">
                 <div class="icon"><i class="uil uil-instagram"></i></div>
                 <div class="icon"><i class="fa-brands fa-linkedin-in icon"></i></div>
@@ -221,5 +245,22 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js"></script>
      <script src="script.js"></script>
+     <script>
+        const scriptURL = ' https://script.google.com/macros/s/AKfycbxi7EwraBoiKoUxHtYPDbe3zQQqob8ug4cX0gU5dKCZVViofiOv7UDNj0xDp81NZ5j17A/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg=document.getElementById("msg");
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response =>{
+                msg.innerHTML="message sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML= ""
+                },5000)
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 </html>
